@@ -1,4 +1,6 @@
-package it.uniroma3.galleria.models;
+package it.uniroma3.catalog.models;
+
+import it.uniroma3.catalog.models.Prodotto;
 
 import javax.persistence.*;
 
@@ -22,17 +24,19 @@ public class Fornitore {
 	private String nome;
 	private String indirizzo;
 	private String email;
+	private String telefono;
 
 	@ManyToMany
 	private List<Prodotto> prodotti;
 
 	public Fornitore(){}
 
-	public Fornitore(String name, String indirizzo, String email)
+	public Fornitore(String name, String indirizzo, String email, String telefono)
 	{
 		this.nome=name;
 		this.indirizzo=indirizzo;
-		this.email=email;
+        this.email=email;
+        this.telefono=telefono;
 
 	}
 
@@ -62,14 +66,21 @@ public class Fornitore {
 		this.email = email;
 	}
 
-	@Override
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+
+    public List<Prodotto> getProdotti() { return prodotti; }
+
+    public void setProdotti(List<Prodotto> prodotti) { this.prodotti = prodotti; }
+
+    @Override
 	public String toString(){
 		return "id="+id+", nome="+nome+", indirizzo="+indirizzo+", email="+email;
 	}
 
-	//public void addProdotto(Prodotto prodotto){ this.prodotti.add(prodotto);}
-
-	//public List<Prodotto> getProdotti(){ return this.prodotti; }
 
 	public boolean equals(Fornitore fornitore)
 	{

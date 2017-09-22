@@ -1,4 +1,4 @@
-package it.uniroma3.galleria.models;
+package it.uniroma3.catalog.models;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -28,7 +28,7 @@ public class Prodotto {
 	@ManyToMany(mappedBy = "prodotti")
 	private List<Fornitore> fornitori;
 
-    @Min(value = 1, message = "Inserire un valore maggiore di 0")
+    @Min(value = 0, message = "Inserire un valore positivo")
 	private int prezzo;
 
 	private String descrizione;
@@ -37,10 +37,10 @@ public class Prodotto {
 
 	public Prodotto(){}
 
-	public Prodotto(String name, Fornitore fornitore, String descr, int prezzo, double height, double lenght)
+	public Prodotto(String name, List <Fornitore> fornitori, String descr, int prezzo)
 	{
 		this.nome=name;
-		this.fornitori=fornitore;
+		this.fornitori=fornitori;
 		this.prezzo=prezzo;
 		this.descrizione = descr;
 	}
@@ -70,7 +70,7 @@ public class Prodotto {
 	}
 
 	public void addFornitore(Fornitore fornitore) {
-		this.fornitori.add(fornitore)
+		this.fornitori.add(fornitore);
 	}
 
     public int getPrezzo() {return prezzo;}
