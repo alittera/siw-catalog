@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 
 @Controller
-public class FornitoreController
+public class xFornitoreController
 {
     @Autowired
     private FornitoreService fornitoreService;
