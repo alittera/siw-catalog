@@ -8,12 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 /**
  * Created by alittera on 20/09/2017.
  */
 
 @Controller
-public class xFornitoreController
+public class FornitoreController
 {
     @Autowired
     private FornitoreService fornitoreService;
@@ -24,6 +26,14 @@ public class xFornitoreController
         Fornitore fornitore = fornitoreService.find(id);
         model.addAttribute("prodotti", fornitore.getProdotti());
         model.addAttribute("fornitore", fornitore);
-        return "fornitore";
+        return "dettagliFornitore";
+    }
+
+    @GetMapping("/fornitori/")
+    public String visualizzaFornitori( Model model)
+    {
+        List<Fornitore> fornitori = fornitoreService.get();
+        model.addAttribute("fornitori", fornitori);
+        return "fornitori";
     }
 }

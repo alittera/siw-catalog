@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:display="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Siw Catalog</title>
+
+
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+
+          rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+
+    />
+
+    <link href="css/main.css"
+          th:href="@{css/main.css}" rel="stylesheet"/>
+
+
+</head>
+<body>
+<div class="container">
+
+    <div id="imgheader">
+        <a href="/" alt="Torna alla Home"> <img src="logo.png" alt="siw catalog" class="img-responsive center-block" /></a>
+    </div>
+
+    <div class="well well-sm">
+
+        <form action="#" th:action="@{getByParam}" th:object="${dummy}" method="get">
+            <div class="btn-group">
+                <a href="#" id="lista" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>Lista</a>
+                <a href="#" id="griglia" class="btn btn-default btn-sm"><span
+                    class="glyphicon glyphicon-th"></span>Griglia</a>
+                <a  sec:authorize="hasRole('ADMIN')" href="protected/aggiungiProdotto" id="griglia" class="btn btn-default btn-sm"><span
+                        class="glyphicon glyphicon-picture"></span>Inserisci Prodotto</a>
+
+
+            </div>
+        </form >
+    </div>
+
+
+    <div   id="prodotti" class="row list-group">
+
+
+
+    </div>
+
+    <footer class="footer">
+        <b>Andrea Littera </b> <a class="btn btn-default btn-sm" sec:authorize="isAnonymous()" href="/login">Login</a>
+        <form th:action="@{/logout}" method="post" sec:authorize="hasRole('ADMIN')">
+            <input type="submit" class="btn btn-default btn-sm" value="Logout"/>
+        </form>
+        <!--<a class="btn btn-default btn-sm" sec:authorize="hasRole('ADMIN')" href="/logout">Logout</a>-->
+    </footer>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#lista').click(function(event){event.preventDefault();$('#prodotti .item').addClass('list-group-item');});
+        $('#griglia').click(function(event){event.preventDefault();$('#prodotti .item').removeClass('list-group-item');$('#prodotti .item').addClass('grid-group-item');});
+    });
+</script>
+</body>
+</html>

@@ -12,6 +12,8 @@ public interface FornitoreRepository extends CrudRepository<Fornitore, Long> {
 
     List<Fornitore> findAll();
 
+    Fornitore findOne(long Id);
+
     void removeById (long Id);
 
     //Fornitore save (Fornitore fornitore);

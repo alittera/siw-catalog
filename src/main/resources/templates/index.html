@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:display="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <title>Catalog for Siw</title>
+
+
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css"/>
+
+
+</head>
+
+<body>
+
+<div th:replace="fragments/menu :: menu"></div>
+
+<div class="container gallery-container">
+
+    <h1 class="jumbotron-heading">Catalogo Prodotti</h1>
+    <p class="lead text-muted text-center font-weight-normal">Gestione del magazzino per la società Acme</p>
+
+    <div class="tz-gallery">
+
+        <div class="row">
+
+            <div class="col-sm-6 col-md-4" th:each="prodotto : ${prodotti}">
+                <div class="thumbnail">
+                    <a class="lightbox text-center">
+                        <img th:src="@{/img/{id}(id=${prodotto.id})}" alt="Immagine mancante" class="img-responsive" style="display: block; max-width: 100%; height: auto;border: 0; vertical-align: middle;"></img>
+                    </a>
+                    <div class="caption">
+                        <a th:href="@{/prodotto/{id}(id=${prodotto.id})}"><h3 th:text="${prodotto.nome}"></h3></a>
+                        <p th:text="${prodotto.descrizione}"></p>
+
+                        <div class="btn-corner" style="margin-top: 25px;" sec:authorize="hasRole('ADMIN')">
+                            <a class="btn btn-secondary" th:href="@{/protected/modificaProdotto/{id}(id=${prodotto.id})}">Modifica</a>
+                            <a class="btn btn-secondary" th:href="@{/protected/eliminaProdotto/{id}(id=${prodotto.id})}">Elimina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="fragments/bootstrap :: bootstrap"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+<script>
+    baguetteBox.run('.tz-gallery');
+</script>
+
+</body>
+</html>

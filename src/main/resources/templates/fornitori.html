@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:display="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <title>Catalog for Siw</title>
+
+
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+
+<div th:replace="fragments/menu :: menu"></div>
+
+<table class="table">
+    <thead class="thead-inverse">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Indirizzo</th>
+        <th>Email</th>
+        <th>Telefono</th>
+        <th sec:authorize="hasRole('ADMIN')">Azioni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="fornitore : ${fornitori}" >
+        <th scope="row" th:text="${fornitore.id}"></th>
+        <td> <a th:href="@{/fornitore/{id}(id=${fornitore.id})}" th:text="${fornitore.nome}"> </a></td>
+        <td th:text="${fornitore.indirizzo}"></td>
+        <td th:text="${fornitore.email}"></td>
+        <td th:text="${fornitore.telefono}"></td>
+        <td>
+            <a class="" sec:authorize="hasRole('ADMIN')" th:href="@{/protected/modificaFornitore/{id}(id=${fornitore.id})}">Modifica</a>
+            <a class="" sec:authorize="hasRole('ADMIN')" th:href="@{/protected/eliminaFornitore/{id}(id=${fornitore.id})}">Elimina</a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="fragments/bootstrap :: bootstrap"></div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-light navbar-toggleable-sm bg-faded justify-content-center" th:fragment="menu">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">Catalogo</a>
+    <div class="navbar-collapse collapse" id="collapsingNavbar3">
+        <ul class="navbar-nav mx-auto w-100 justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/prodotti/">Prodotti</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/fornitori/">Fornitori</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li sec:authorize="isAnonymous()" class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                <a class="nav-link" href="/protected/aggiungiFornitore">Inserisci Fornitore</a>
+            </li>
+            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                <a class="nav-link" href="/protected/aggiungiProdotto" >Inserisci Prodotto</a>
+            </li>
+            <form th:action="@{/logout}" method="post" sec:authorize="hasRole('ADMIN')">
+                <input type="submit" class="btn btn-default btn-sm" style="margin-top: 8px;" value="Logout"/>
+            </form>
+
+
+        </ul>
+    </div>
+</nav>

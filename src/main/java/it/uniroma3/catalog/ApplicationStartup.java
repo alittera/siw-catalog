@@ -35,8 +35,8 @@ public class ApplicationStartup
     {
 
         Fornitore f1 = new Fornitore("Fornitore 1", "Via xiosdd 11", "service@toshiba.com", "+23 33467654289");
-        Fornitore f2 = new Fornitore("Toshiba 2", "Via xiosdd 22", "service@toshiba.com", "+23 33467654289");
-        Fornitore f3 = new Fornitore("Toshiba 3", "Via xiosdd 33", "service@toshiba.com", "+23 33467654289");
+        Fornitore f2 = new Fornitore("Fornitore 2", "Via xiosdd 22", "service@toshiba.com", "+23 33467654289");
+        Fornitore f3 = new Fornitore("Fornitore 3", "Via xiosdd 33", "service@toshiba.com", "+23 33467654289");
 
 
         fornitoreService.save(f1); fornitoreService.save(f2); fornitoreService.save(f3);
