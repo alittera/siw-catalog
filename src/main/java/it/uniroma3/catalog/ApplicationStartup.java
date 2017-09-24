@@ -44,7 +44,7 @@ public class ApplicationStartup
 
         Prodotto p1 = new Prodotto("Prodotto 1", new ArrayList<Fornitore> () {{add(f1);add(f2);add(f3);}}, "Descrizione lorem",1);
         Prodotto p2 = new Prodotto("Prodotto 2", new ArrayList<Fornitore> () {{add(f2);add(f1);}}, "Descrizione lorem",2);
-        Prodotto p3 = new Prodotto("Prodotto 3",null, "Descrizione lorem",3);
+        Prodotto p3 = new Prodotto("Prodotto 3", new ArrayList<Fornitore> () {{add(f2);add(f1);}}, "Descrizione lorem",3);
 
         prodottoService.save(p1); prodottoService.save(p2); prodottoService.save(p3);
 

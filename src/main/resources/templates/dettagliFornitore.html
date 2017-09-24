@@ -1,76 +1,77 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:display="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Siw Catalog - Fornitore</title>
-
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <title>Catalog for Siw</title>
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
-
-    <style>
-        .contcenter{
-
-
-            background-color: #424242;
-            height: 100%;
-            width: 100%;
-            font-family: helvetica;
-            overflow: hidden;
-            position:fixed;
-            top:0;
-            left:0;
-        }
-
-        .centered  {
-            max-width: 700px;
-            height: 100%;
-            margin: 0 auto;
-            position: relative;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-left:10px;
-            padding-right:10px;
-        }
-
-    </style>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 
 
 </head>
+
 <body>
-<div class="contcenter">
-    <div class="centered">
 
-        <div class="list-group">
-            <a class="list-group-item">Nome: <b th:text="${fornitore.nome}"></b></a>
-            <a class="list-group-item">Indirizzo: <b th:text="${fornitore.indirizzo}"></b></a>
-            <a class="list-group-item">Email: <b th:text="${fornitore.email}"></b></a>
-            <a class="list-group-item">Telefono: <b th:text="${fornitore.telefono}"></b></a>
-            <div th:each="prodotto : ${prodotti}" class="item  col-xs-4 col-lg-4">
-                <div class="thumbnail">
-
-                    <a th:href="@{/prodotto/{id}(id=${prodotto.id})}"><img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:src="@{/img/{id}(id=${prodotto.id})}"  alt="immagine prodotto" /> </a>
+<div th:replace="fragments/menu :: menu"></div>
 
 
-                    <div class="caption">
-                        <h4 class="group inner list-group-item-heading" th:text="${prodotto.nome}"></h4>
-                        <p class="group inner list-group-item-text" th:text="${prodotto.prezzo}"></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2" style="margin-top: 75px;">
+
+
+            <div class="card card-outline-secondary">
+                <div class="card-header">
+                    <h3 class="mb-0 text-center" th:text="${fornitore.nome}"></h3>
+
+                </div>
+                <div class="card-block">
+                    <div class="list-group">
+
+
+                        <a class="list-group-item">Indirizzo: <b th:text="${fornitore.indirizzo}"></b></a>
+                        <a class="list-group-item">Email: <b th:text="${fornitore.email}"></b></a>
+                        <a class="list-group-item">Telefono: <b th:text="${fornitore.telefono}"></b></a>
 
 
                     </div>
+
+                    <div class="tz-gallery">
+
+                        <div class="row">
+
+                            <div class="col-sm-6 col-md-4" th:each="prodotto : ${prodotti}">
+                                <div class="thumbnail">
+                                    <a class="lightbox text-center">
+                                        <img th:src="@{/img/{id}(id=${prodotto.id})}" alt="Immagine mancante" class="img-responsive" style="display: block; max-width: 100%; height: auto;border: 0; vertical-align: middle;"></img>
+                                    </a>
+                                    <div class="caption">
+                                        <a th:href="@{/prodotto/{id}(id=${prodotto.id})}"><h3 th:text="${prodotto.nome}"></h3></a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
                 </div>
             </div>
-            <a href="/" >Torna all'indice</a>
+
         </div>
+    </div></div>
 
 
-    </div>
 
-</div>
+<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="fragments/bootstrap :: bootstrap"></div>
+
 </body>
 </html>

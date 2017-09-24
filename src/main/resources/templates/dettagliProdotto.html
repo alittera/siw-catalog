@@ -1,81 +1,89 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:display="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Siw Catalog - Prodotto</title>
-
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <title>Catalog for Siw</title>
 
 
-
-
-    <style>
-        .contcenter{
-
-
-            background-color: #424242;
-            height: 100%;
-            width: 100%;
-            font-family: helvetica;
-            overflow: hidden;
-            position:fixed;
-            top:0;
-            left:0;
-        }
-
-        .centered  {
-            max-width: 700px;
-            height: 100%;
-            margin: 0 auto;
-            position: relative;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-left:10px;
-            padding-right:10px;
-        }
-
-    </style>
-
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css"/>
 
 </head>
+
 <body>
+
 <div th:replace="fragments/menu :: menu"></div>
-<div class="contcenter">
-    <div class="centered">
-
-    <div class="list-group">
-    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:src="@{/img/{id}(id=${prodotto.id})}"  alt="immagine prodotto" /><a class="list-group-item">Nome: <b th:text="${prodotto.nome}"></b></a>
-        <a class="list-group-item">Descrizione: <b th:text="${prodotto.descrizione}"></b></a>
-        <a class="list-group-item">Prezzo: <b th:text="${prodotto.prezzo}"></b></a>
 
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2" style="margin-top: 75px;">
 
 
-        <div th:each="fornitore : ${fornitori}" class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
+            <div class="card card-outline-secondary">
+                <div class="card-header">
+                    <h3 class="mb-0 text-center" th:text="${prodotto.nome}"></h3>
 
-                <a th:href="@{/fornitore/{id}(id=${fornitore.id})}"><img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:src="@{/img/{id}(id=${fornitore.id})}"  alt="immagine prodotto" /> </a>
+                </div>
+                <div class="card-block">
+                    <div class="list-group">
+                        <div class="immagine-squared" style="background-image:url(@{/img/{id}(id=${prodotto.id})}); ">
+                        </div>
+                        <img class="group list-group-image" style="display: block; max-width: 100%; height: auto;border: 0; vertical-align: middle;" th:src="@{/img/{id}(id=${prodotto.id})}"  alt="immagine prodotto" />
 
+                        <a class="list-group-item">Descrizione: <b th:text="${prodotto.descrizione}"></b></a>
+                        <a class="list-group-item">Prezzo: <b th:text="${prodotto.prezzo}"></b></a>
 
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${fornitore.nome}"></h4>
-                    <p class="group inner list-group-item-text" th:text="${fornitore.email}"></p>
-                    <p class="group inner list-group-item-text" th:text="${fornitore.indirizzo}"></p>
+                        <div class="btn-corner" style="margin-top: 25px;" sec:authorize="hasRole('ADMIN')">
+                            <a class="btn btn-secondary" th:href="@{/protected/modificaProdotto/{id}(id=${prodotto.id})}">Modifica</a>
+                            <a class="btn btn-secondary" th:href="@{/protected/eliminaProdotto/{id}(id=${prodotto.id})}">Elimina</a>
+                        </div>
+
+                    </div>
+
+                <div class="row" style="margin-top: 30px; padding: 1.25rem; ">
+                    <p class="h3 text-center w-100">Fornitori</p>
+                        <table class="table">
+                            <thead class="thead">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Indirizzo</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="fornitore : ${fornitori}" >
+                                <th scope="row" th:text="${fornitore.id}"></th>
+                                <td> <a th:href="@{/fornitore/{id}(id=${fornitore.id})}" th:text="${fornitore.nome}"> </a></td>
+                                <td th:text="${fornitore.indirizzo}"></td>
+                                <td th:text="${fornitore.email}"></td>
+                                <td th:text="${fornitore.telefono}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                </div>
 
                 </div>
             </div>
+
         </div>
-
-        <a href="/" >Torna all'indice</a>
-    </div>
+    </div></div>
 
 
-    </div>
 
-</div>
+    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="fragments/bootstrap :: bootstrap"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.tz-gallery');
+    </script>
+
 </body>
 </html>

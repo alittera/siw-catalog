@@ -1,6 +1,8 @@
 package it.uniroma3.catalog.service;
 
+import it.uniroma3.catalog.models.Fornitore;
 import it.uniroma3.catalog.models.Prodotto;
+import it.uniroma3.catalog.repository.FornitoreRepository;
 import it.uniroma3.catalog.repository.ProdottoRepository;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +26,8 @@ public class ProdottoService implements ServletContextAware{
     @Autowired
     private ProdottoRepository repo;
 
+//    @Autowired
+//    private FornitoreRepository frepo;
 
     private ServletContext servletContext;
 
@@ -32,7 +37,9 @@ public class ProdottoService implements ServletContextAware{
 
     public Prodotto find(long Id) { return repo.findOne(Id); }
 
-    public Prodotto save(Prodotto prodotto) { return repo.save(prodotto); }
+    public Prodotto save(Prodotto prodotto) {
+
+        return repo.save(prodotto); }
     
     public Prodotto save(Prodotto Prodotto, MultipartFile file) {
         Prodotto ProdottoSaved = repo.save(Prodotto);

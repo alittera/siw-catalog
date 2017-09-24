@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Prodotto {
     @Column(nullable=false)
 	private String nome;
 
+    @NotNull
 	@ManyToMany(mappedBy = "prodotti")
 	private List<Fornitore> fornitori;
 
