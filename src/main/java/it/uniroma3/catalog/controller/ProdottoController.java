@@ -36,7 +36,7 @@ public class ProdottoController {
     }
 
     @PostMapping("/protected/aggiungiProdotto")
-    public String salvaProdotto(@RequestParam("file") MultipartFile file, Model model, @Valid Prodotto prodotto, BindingResult bindingResult, @RequestParam ArrayList<Fornitore> fornitori) {
+    public String salvaProdotto(@RequestParam("file") MultipartFile file, Model model, @Valid Prodotto prodotto, BindingResult bindingResult, @ModelAttribute("fornitori") ArrayList<Fornitore> fornitori) {
         if (bindingResult.hasErrors() || file.isEmpty())
         {
             if(file.isEmpty())
@@ -76,7 +76,7 @@ public class ProdottoController {
     }
 
     @PostMapping("/protected/modificaProdotto")
-    public String salvaModificaProdotto(@RequestParam("file") MultipartFile file, Model model, @Valid Prodotto prodotto, BindingResult bindingResult, @RequestParam ArrayList<Fornitore> fornitori)
+    public String salvaModificaProdotto(@RequestParam("file") MultipartFile file, Model model, @Valid Prodotto prodotto, BindingResult bindingResult, @ModelAttribute("fornitori") ArrayList<Fornitore> fornitori)
     {
         model.addAttribute("fornitori", fornitoreService.get());
         if (bindingResult.hasErrors() || file.isEmpty())
