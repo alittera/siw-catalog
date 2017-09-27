@@ -2,6 +2,8 @@
 
 Si vuole realizzare il sistema informativo su Web per la gestione di un catalogo di prodotti. Possono accedere al sistema utenti generici e un amministratore. Il catalogo contiene l’elenco dei prodotti e i fornitori (uno o più) di ciascun prodotto. L’amministratore, previa autenticazione, può inserire e rimuovere un prodotto, o aggiornarne l’elenco dei fornitori (aggiungere o rimuovere un fornitore ad un prodotto). Per semplicità supponiamo che per ogni prodotto siano di interesse il nome, il prezzo, una descrizione, l’elenco dei fornitori. Di ogni fornitore sono di interesse il nome, l’indirizzo, l’email. L’associazione tra prodotto e fornitore è molti a molti. L’utente generico può accedere alle informazioni del catalogo attraverso diversi percorsi di navigazione, opportunamente predisposti (ad esempio, per fornitore, oppure per nome, etc.).
 
+http://34.214.169.64:8080/
+Credenziali : Username : admin Password : siw
 
 Casi d'uso:
 
