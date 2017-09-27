@@ -1,6 +1,5 @@
 package it.uniroma3.catalog.controller;
 
-import it.uniroma3.catalog.models.Dummy;
 import it.uniroma3.catalog.models.Fornitore;
 import it.uniroma3.catalog.models.Prodotto;
 import it.uniroma3.catalog.service.FornitoreService;
@@ -36,7 +35,7 @@ public class ProdottoController {
     }
 
     @PostMapping("/protected/aggiungiProdotto")
-    public String salvaProdotto(@RequestParam("file") MultipartFile file, Model model, @Valid Prodotto prodotto, BindingResult bindingResult, @ModelAttribute("fornitori") ArrayList<Fornitore> fornitori) {
+    public String salvaProdotto(@RequestParam("file") MultipartFile file, Model model, @Valid Prodotto prodotto, BindingResult bindingResult, @RequestParam("fornitori") ArrayList<Fornitore> fornitori) {
         if (bindingResult.hasErrors() || file.isEmpty())
         {
             if(file.isEmpty())
@@ -76,7 +75,7 @@ public class ProdottoController {
     }
 
     @PostMapping("/protected/modificaProdotto")
-    public String salvaModificaProdotto(@RequestParam("file") MultipartFile file, Model model, @Valid Prodotto prodotto, BindingResult bindingResult, @ModelAttribute("fornitori") ArrayList<Fornitore> fornitori)
+    public String salvaModificaProdotto(@RequestParam("file") MultipartFile file, Model model, @Valid Prodotto prodotto, BindingResult bindingResult, @RequestParam("fornitori") ArrayList<Fornitore> fornitori)
     {
         model.addAttribute("fornitori", fornitoreService.get());
         if (bindingResult.hasErrors() || file.isEmpty())

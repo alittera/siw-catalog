@@ -1,7 +1,5 @@
 package it.uniroma3.catalog.controller;
 
-        import it.uniroma3.catalog.models.Dummy;
-        import it.uniroma3.catalog.models.Fornitore;
         import it.uniroma3.catalog.models.Prodotto;
         import it.uniroma3.catalog.service.FornitoreService;
         import it.uniroma3.catalog.service.ProdottoService;
@@ -9,8 +7,7 @@ package it.uniroma3.catalog.controller;
         import org.springframework.stereotype.Controller;
         import org.springframework.ui.Model;
         import org.springframework.web.bind.annotation.GetMapping;
-        import org.springframework.web.bind.annotation.RequestParam;
-//import sun.jvm.hotspot.debugger.win32.coff.OptionalHeaderWindowsSpecificFields;
+        //import sun.jvm.hotspot.debugger.win32.coff.OptionalHeaderWindowsSpecificFields;
 
         import java.util.ArrayList;
         import java.util.List;
