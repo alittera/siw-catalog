@@ -34,17 +34,21 @@ public class ApplicationStartup
     public void onApplicationEvent(final ApplicationReadyEvent event)
     {
 
-        Fornitore f1 = new Fornitore("Fornitore 1", "Via xiosdd 11", "service@toshiba.com", "+23 33467654289");
-        Fornitore f2 = new Fornitore("Fornitore 2", "Via xiosdd 22", "service@toshiba.com", "+23 33467654289");
-        Fornitore f3 = new Fornitore("Fornitore 3", "Via xiosdd 33", "service@toshiba.com", "+23 33467654289");
+        Fornitore f1 = new Fornitore("Fornitore 1", "Via viale 11", "service@for.com", "+00 123456789");
+        Fornitore f2 = new Fornitore("Fornitore 2", "Via viale 22", "service@for.com", "+00 123456789") ;
+        Fornitore f3 = new Fornitore("Fornitore 3", "Via viale 33", "service@for.com", "+00 123456789") ;
+        Fornitore f4 = new Fornitore("Fornitore 4", "Via viale 44", "service@for.com", "+00 123456789") ;
+        Fornitore f5 = new Fornitore("Fornitore 5", "Via viale 55", "service@for.com", "+00 123456789") ;
+        Fornitore f6 = new Fornitore("Fornitore 6", "Via viale 66", "service@for.com", "+00 123456789") ;
 
 
         fornitoreService.save(f1); fornitoreService.save(f2); fornitoreService.save(f3);
 
 
-        Prodotto p1 = new Prodotto("Prodotto 1", new ArrayList<Fornitore> () {{add(f1);add(f2);add(f3);}}, "Descrizione lorem",1);
-        Prodotto p2 = new Prodotto("Prodotto 2", new ArrayList<Fornitore> () {{add(f2);add(f1);}}, "Descrizione lorem",2);
-        Prodotto p3 = new Prodotto("Prodotto 3", new ArrayList<Fornitore> () {{add(f2);add(f1);}}, "Descrizione lorem",3);
+        Prodotto p1 = new Prodotto("Macchina fotografica", new ArrayList<Fornitore> () {{add(f1);add(f2);add(f3);}}, "\n" +
+                "Fotocamera reflex digitale a obiettivo singolo 24,9 Mpx, Da ISO 100 a 12800",3000);
+        Prodotto p2 = new Prodotto("Farina ", new ArrayList<Fornitore> () {{add(f1);}}, "Tipo 00 macinata artigianalmente",2);
+        Prodotto p3 = new Prodotto("Metallo sfudo", new ArrayList<Fornitore> () {{add(f2);add(f1);}}, "10Kg sbarra ferro dolce",40);
 
         prodottoService.save(p1); prodottoService.save(p2); prodottoService.save(p3);
 
