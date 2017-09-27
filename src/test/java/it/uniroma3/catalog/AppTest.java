@@ -26,18 +26,13 @@ public class AppTest {
 
     @Autowired
     private FornitoreService service;
-
     Fornitore fornitore;
-    Date nascita;
-    Date morte;
     List<Prodotto> prodotti;
-    Prodotto op;
+
 
     @Before
     public void setup()
     {
-
-
 
         fornitore=service.save(fornitore);
     }
