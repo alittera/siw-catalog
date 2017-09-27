@@ -15,13 +15,13 @@
 </head>
 
 <body>
-
+<div class="wrapper">
 <div th:replace="fragments/menu :: menu"></div>
 
 
-<div class="container">
+<div class="content container">
     <div class="row">
-        <div class="col-md-8 offset-md-2" style="margin-top: 75px;">
+        <div class="col-md-8 offset-md-2 col-sm-12 mt-5 mb-5">
 
 
             <div class="card card-outline-secondary">
@@ -35,8 +35,8 @@
                         </div>
                         <img class="group list-group-image" style="display: block; max-width: 100%; height: auto;border: 0; vertical-align: middle;" th:src="@{/img/{id}(id=${prodotto.id})}"  alt="immagine prodotto" />
 
-                        <a class="list-group-item">Descrizione: <b th:text="${prodotto.descrizione}"></b></a>
-                        <a class="list-group-item">Prezzo: <b th:text="${prodotto.prezzo}"></b></a>
+                        <a class="list-group-item"><b>Descrizione: </b><span th:text="${prodotto.descrizione}"></span></a>
+                        <a class="list-group-item"><b>Prezzo: </b><span th:text="${prodotto.prezzo}"></span></a>
 
                         <div class="btn-corner" style="margin-top: 25px;" sec:authorize="hasRole('ADMIN')">
                             <a class="btn btn-secondary" th:href="@{/protected/modificaProdotto/{id}(id=${prodotto.id})}">Modifica</a>
@@ -45,7 +45,7 @@
 
                     </div>
 
-                <div class="row" style="margin-top: 30px; padding: 1.25rem; ">
+                <div class="table-responsive" style="margin-top: 30px;">
                     <p class="h3 text-center w-100">Fornitori</p>
                         <table class="table">
                             <thead class="thead">
@@ -74,8 +74,8 @@
             </div>
 
         </div>
-    </div></div>
-
+    </div>
+</div>
 
 
     <div th:replace="fragments/footer :: footer"></div>
@@ -84,6 +84,6 @@
     <script>
         baguetteBox.run('.tz-gallery');
     </script>
-
+</div>
 </body>
 </html>

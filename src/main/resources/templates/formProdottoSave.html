@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Siw Catalog</title>
-    <link href="/css/album.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
     <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="/css/multi-select.css" th:href="@{/css/multi-select.css}" rel="stylesheet"/>
 </head>
 <body>
 <div th:replace="fragments/menu :: menu"></div>
-
+<div class="wrapper">
 <div class="container">
 <div class="row">
-<div class="col-md-8 offset-md-2" style="margin-top: 75px;">
-
-
+<div class="col-md-8 offset-md-2 mt-5 mb-5">
         <div class="card card-outline-secondary">
             <div class="card-header">
                 <h3 class="mb-0 text-center">Inserisci Prodotto</h3>
@@ -46,7 +45,7 @@
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">Fornitori</label>
                         <div class="col-lg-9">
-                            <select  th:field="*{fornitori}" class="form-control" name="fornitori" multiple="multiple">
+                            <select  th:field="*{fornitori}" class="form-control" name="fornitori" multiple="multiple" id="mselect" required="required">
                                 <option th:each="fornitore : ${fornitori}" th:value="${fornitore.id}"
                                         th:text="${fornitore.nome}"></option>
                             </select>
@@ -73,13 +72,19 @@
                 </form>
             </div>
         </div>
-
-</div>
+        </div>
     </div>
-
+</div>
 </div>
 
 <div th:replace="fragments/bootstrap :: bootstrap"></div>
+<script th:src="@{/js/jquery.multi-select.js}" type="text/javascript"></script>
+<script>
+    $('#mselect').multiSelect({
+        selectableHeader: "<div>Fornitori</div>",
+        selectionHeader: "<div>Selezionati</div>"
+    });
+</script>
 
 </body>
 </html>

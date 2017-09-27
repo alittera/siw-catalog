@@ -18,7 +18,9 @@
 
 <div th:replace="fragments/menu :: menu"></div>
 
-<table class="table">
+<div class="col-md-10 offset-md-1 col-sm-12 table-responsive" style="margin-top: 40px;margin-bottom: 55px;">
+    <p class="h3 text-center w-100">Fornitori</p>
+<table class="table" style="margin-top: 30px;">
     <thead class="thead-inverse">
     <tr>
         <th>Id</th>
@@ -26,12 +28,12 @@
         <th>Indirizzo</th>
         <th>Email</th>
         <th>Telefono</th>
-        <th sec:authorize="hasRole('ADMIN')">Azioni</th>
+        <!-- <th sec:authorize="hasRole('ADMIN')">Azioni</th> -->
     </tr>
     </thead>
     <tbody>
     <tr th:each="fornitore : ${fornitori}" >
-        <th scope="row" th:text="${fornitore.id}"></th>
+        <th th:text="${fornitore.id}"></th>
         <td> <a th:href="@{/fornitore/{id}(id=${fornitore.id})}" th:text="${fornitore.nome}"> </a></td>
         <td th:text="${fornitore.indirizzo}"></td>
         <td th:text="${fornitore.email}"></td>
@@ -44,6 +46,7 @@
 
     </tbody>
 </table>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 <div th:replace="fragments/bootstrap :: bootstrap"></div>

@@ -18,7 +18,9 @@
 
 <div th:replace="fragments/menu :: menu"></div>
 
-<table class="table">
+<div class="col-md-10 offset-md-1 col-sm-12 table-responsive" style="margin-top: 40px;margin-bottom: 55px;">
+    <p class="h3 text-center w-100">Prodotti</p>
+<table class="table" style="margin-top: 30px;">
     <thead class="thead-inverse">
     <tr>
         <th>Id</th>
@@ -30,7 +32,7 @@
     </thead>
     <tbody>
     <tr th:each="prodotto : ${prodotti}" >
-        <th scope="row" th:text="${prodotto.id}"></th>
+        <th th:text="${prodotto.id}"></th>
         <td> <a th:href="@{/prodotto/{id}(id=${prodotto.id})}" th:text="${prodotto.nome}"> </a></td>
         <td th:text="${prodotto.descrizione}"></td>
         <td th:text="${prodotto.prezzo}"></td>
@@ -42,6 +44,7 @@
 
     </tbody>
 </table>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 <div th:replace="fragments/bootstrap :: bootstrap"></div>

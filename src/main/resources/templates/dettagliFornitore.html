@@ -15,13 +15,13 @@
 </head>
 
 <body>
-
+<div class="wrapper">
 <div th:replace="fragments/menu :: menu"></div>
 
 
-<div class="container">
+<div class="content container">
     <div class="row">
-        <div class="col-md-8 offset-md-2" style="margin-top: 75px;">
+        <div class="col-md-8 offset-md-2 col-sm-12 mt-5 mb-5" >
 
 
             <div class="card card-outline-secondary">
@@ -32,26 +32,23 @@
                 <div class="card-block">
                     <div class="list-group">
 
-
-                        <a class="list-group-item">Indirizzo: <b th:text="${fornitore.indirizzo}"></b></a>
-                        <a class="list-group-item">Email: <b th:text="${fornitore.email}"></b></a>
-                        <a class="list-group-item">Telefono: <b th:text="${fornitore.telefono}"></b></a>
-
+                            <a class="list-group-item"><b>Indirizzo: </b><span th:text="${fornitore.indirizzo}"></span></a>
+                            <a class="list-group-item"><b>Email: </b><span th:text="${fornitore.email}"></span></a>
+                            <a class="list-group-item"><b>Telefono: </b><span th:text="${fornitore.telefono}"></span></a>
 
                     </div>
-
                     <div class="tz-gallery">
 
                         <div class="row">
-
-                            <div class="col-sm-6 col-md-4" th:each="prodotto : ${prodotti}">
+                            <p class="h3 text-center w-100  mb-3">Prodotti</p>
+                            <div class="col-sm-6 col-md-6" th:each="prodotto : ${prodotti}">
                                 <div class="thumbnail">
                                     <a class="lightbox text-center">
                                         <img th:src="@{/img/{id}(id=${prodotto.id})}" alt="Immagine mancante" class="img-responsive" style="display: block; max-width: 100%; height: auto;border: 0; vertical-align: middle;"></img>
                                     </a>
                                     <div class="caption">
                                         <a th:href="@{/prodotto/{id}(id=${prodotto.id})}"><h3 th:text="${prodotto.nome}"></h3></a>
-
+                                        <p th:text="${prodotto.descrizione}"></p>
                                     </div>
                                 </div>
                             </div>
@@ -66,12 +63,12 @@
             </div>
 
         </div>
-    </div></div>
-
+    </div>
+</div>
 
 
 <div th:replace="fragments/footer :: footer"></div>
 <div th:replace="fragments/bootstrap :: bootstrap"></div>
-
+</div>
 </body>
 </html>
