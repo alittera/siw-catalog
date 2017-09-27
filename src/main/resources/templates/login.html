@@ -13,7 +13,7 @@
         .contcenter{
 
 
-            background-color: #424242;
+            background-image: linear-gradient(to top, #f8f8f8 0%, #ffffff 100%);
             height: 100%;
             width: 100%;
             font-family: helvetica;
@@ -45,6 +45,7 @@
             padding: 45px;
             text-align: center;
             border-radius:5px;
+            border: 1px solid #dadada;
         }
     </style>
 </head>
@@ -56,10 +57,10 @@
 <div >
     <div class="contcenter">
 
-        <div class="centered">
+    <div class="centered card card-outline-secondary">
 
-
-
+                <div class="card-block">
+                    <h3 class="mb-0 text-center">Login</h3>
 
             <p th:if="${loginError}" class="error">Wrong user or password</p>
             <form  class ="form" th:action="@{/login}" method="post">
@@ -67,11 +68,12 @@
                 <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
                 <label for="password">Password</label>:
                 <input type="password" id="password" name="password" /> <br />
-                <input type="submit" class="btn" value="Log in" />
+                <input type="submit" class="btn btn-secondar mt-2" value="Log in" />
             </form>
 
         </div>
 
+    </div>
     </div>
 </div>
 
